@@ -1,6 +1,4 @@
-
 import { Injectable } from '@angular/core';
-import { Globals } from '../service/globals';
 
 /**
  *	Description: GlobalDataService
@@ -9,7 +7,9 @@ import { Globals } from '../service/globals';
 @Injectable()
 export class GlobalDataService {    
     private mqttConnStatus = '0';
-    constructor(private globals: Globals) {}
+    constructor() {
+		
+	}
 
     setMQTTConnectionStatus(value) {
       this.mqttConnStatus = value;

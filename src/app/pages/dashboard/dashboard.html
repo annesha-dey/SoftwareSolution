@@ -1,17 +1,20 @@
 <div class="row">
   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    <pie-chart></pie-chart>
+    <pie-chart [piecht]="pieChartData"></pie-chart>
   </div>
 </div>
 
 <div class="row">
   <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
                      cardTitle="dashboard.power_generation" baCardClass="traffic-panel medium-card">
-    <traffic-chart></traffic-chart>
+                    <!-- <traffic-chart [doughNut]="totalPowerGeneration"></traffic-chart>-->
+                    <traffic-chart (messageEvent)="receiveMessage($event)"></traffic-chart>
+                        <!--<traffic-chart></traffic-chart>-->
   </ba-card>
 
   <ba-card class="col-xlg-6 col-xl-6 col-lg-12 col-sm-12 col-12"
            cardTitle="dashboard.windturbines_by_farms" baCardClass="medium-card">
-    <users-map></users-map>
+    <!--<users-map></users-map>-->
+    <leaflet-maps></leaflet-maps>
   </ba-card>
 </div>

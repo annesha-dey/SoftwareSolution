@@ -1,52 +1,47 @@
 import {Injectable} from '@angular/core';
 import {BaThemeConfigProvider, colorHelper} from '../../../theme';
-
+import { RestServicesService } from '../../../service/rest.service/rest-services.service';
 @Injectable()
 export class TrafficChartService {
+    totalPowerGeneration = [];
+    public testObj = [];
+    
+    public color = [];
+    constructor(private _baConfig: BaThemeConfigProvider, public restService: RestServicesService) {
 
-  constructor(private _baConfig:BaThemeConfigProvider) {
-  }
+        let dashboardColors = this._baConfig.get().colors.dashboard;
+        this.color = [dashboardColors.white, dashboardColors.gossip]
+    }
 
+    
 
-  getData() {
-    let dashboardColors = this._baConfig.get().colors.dashboard;
-    return [
-      {
-        value: 2000,
-        color: dashboardColors.white,
-        highlight: colorHelper.shade(dashboardColors.white, 15),
-        label: 'WindFarm1',
-        percentage: 87,
-        order: 1,
-      }, {
-        value: 1500,
-        color: dashboardColors.gossip,
-        highlight: colorHelper.shade(dashboardColors.gossip, 15),
-        label: 'WindFarm2',
-        percentage: 22,
-        order: 4,
-      }, {
-        value: 1000,
-        color: dashboardColors.silverTree,
-        highlight: colorHelper.shade(dashboardColors.silverTree, 15),
-        label: 'WindFarm3',
-        percentage: 70,
-        order: 3,
-      }, {
-        value: 1200,
-        color: dashboardColors.surfieGreen,
-        highlight: colorHelper.shade(dashboardColors.surfieGreen, 15),
-        label: 'Windfarm4',
-        percentage: 38,
-        order: 2,
-      }, {
-        value: 400,
-        color: dashboardColors.blueStone,
-        highlight: colorHelper.shade(dashboardColors.blueStone, 15),
-        label: 'WindFarm5',
-        percentage: 17,
-        order: 0,
-      },
-    ];
-  }
+    getTrafficData(site, startDate, endDate): Promise < any > {
+        return new Promise((resolve, reject) => {
+            
+            var colorIndex = 0;
+            this.restService.getFarmStats(site.token, startDate, endDate).subscribe(response => {
+                    const resultObject = response.json();
+                    resolve({
+                        value: Number(resultObject.powerGenerated).toFixed(2),
+                        siteToken: resultObject.siteToken,
+                        color: this.color[site.colorIndex],
+                        highlight: colorHelper.shade(this.color[site.colorIndex], 15),
+                        label: site.name,
+                        percentage: 0,
+                        order: 1,
+                        sl: site.sl
+                    });
+                },
+                error => {
+                    resolve({value: 0,
+                        siteToken: site.token,
+                        color: this.color[site.colorIndex],
+                        highlight: colorHelper.shade(this.color[site.colorIndex], 15),
+                        label: site.name,
+                        percentage: 0,
+                        order: 1,
+                        sl: site.sl});
+                });
+        });
+    }
 }

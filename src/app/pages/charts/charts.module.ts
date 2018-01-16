@@ -9,20 +9,46 @@ import { ChartistJs } from './components/chartistJs/chartistJs.component';
 import { ChartistJsService } from './components/chartistJs/chartistJs.service';
 import { AppTranslationModule } from '../../app.translation.module';
 
+import { ResponsiveTable } from './components/basicTables/components/responsiveTable/responsiveTable.component';
+
+import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import { TabsModule } from 'ng2-tabs';
+declare var require: any;
+
+ export function highchartsFactory() {
+     return require('highcharts');
+ }
+
+ const Highcharts = require('highcharts');
+ // This is for all plots, change Date axis to local timezone
+ Highcharts.setOptions({
+     global: {
+         useUTC: false,
+     },
+ });
+
 @NgModule({
   imports: [
     CommonModule,
     AppTranslationModule,
     FormsModule,
     NgaModule,
-    routing
+    routing,
+    ChartModule,
+    TabsModule,
   ],
   declarations: [
     Charts,
-    ChartistJs
+    ChartistJs,
+    ResponsiveTable,
   ],
   providers: [
-    ChartistJsService
+    ChartistJsService,
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory,
+ },
   ]
 })
 export class ChartsModule {}

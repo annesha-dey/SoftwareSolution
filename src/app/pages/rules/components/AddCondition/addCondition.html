@@ -1,0 +1,36 @@
+<form [formGroup]="conditionForm">
+  <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <select formControlName="parameter" class="form-control">
+                    <option [ngValue]="undefined" disabled  selected> Please Choose</option>
+                    <option *ngFor="let element of assetAttr"[value]="element.attr">{{element.attr}}</option>
+             </select>
+
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <!--<label for="inputEmail">Location</label>
+                  <input type="email" class="form-control" id="inputEmail" placeholder="     > =   ">-->
+                  <select formControlName="operation" class="form-control">
+                      <option><</option>
+                      <option>></option>
+                      <option>==</option>
+                      <option>!=</option>
+                      <option><=</option>
+                      <option>>=</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <!--<label for="inputEmail">Location</label>-->
+                  <input formControlName="measure" type="text" class="form-control" id="text" placeholder="70">
+                </div>
+              </div>
+              <div class="col-md-2">
+              <button class="btn btn-danger btn-icon" type="button" (click)="removeObject()"><i _ngcontent-c35="" class="ion-trash-a"></i></button>
+              </div>
+    </div>
+</form>

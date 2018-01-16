@@ -1,0 +1,67 @@
+// :host /deep/.status-button {
+//   width: 60px;
+// }
+
+.event-table{
+  table-layout: fixed;
+  width: 100%;
+  border-left: 1px solid #cdd0d4;
+  border-right: 1px solid #cdd0d4;
+  border-bottom: 1px solid #cdd0d4;
+
+}
+.measurement-th{
+  width: 75%
+}
+.measurement-td{
+  word-wrap: break-word;
+  text-align: left;
+  margin-top: 0px;
+  // width:100px; word-wrap:break-word
+}
+span {
+  font-size: 18px;
+  font-family: 'Times New Roman';
+  line-height: 15px;
+  height: 22px;
+  word-wrap: break-word;
+}
+
+.table {
+  margin-bottom: 0px;
+  & > thead {
+    & > tr {
+      & > th {
+        // border-bottom: 1px solid $border-light;
+        white-space: nowrap;
+        &:first-child {
+          text-align: center;
+        }
+        &:last-child {
+          padding-right: 16px;
+        }
+      }
+    }
+  }
+  & > tbody {
+    & > tr {
+      & > tr:first-child {
+        padding-top: 1px;
+      }
+      & > td {
+        padding: 0px 8px;
+        line-height: 24px;
+        // border-top: 1px solid $border-light;
+        &:first-child {
+          text-align: left;
+        }
+        &:last-child {
+          padding-right: 16px !important;
+        }
+      }
+    }
+  }
+}
+.measurement-date{
+  width : 15%;
+}

@@ -1,0 +1,147 @@
+<h3>Create New Rule</h3><br>
+<!--<form [formGroup]="ruleForm" (ngSubmit)="doLogin($event)">
+    <input formControlName="email" type="email" placeholder="Your email">
+    <input formControlName="password" type="password" placeholder="Your password">
+  <button type="submit">Log in</button>
+</form>-->
+ <form [formGroup]="ruleForm" (ngSubmit)="doLogin($event)">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input  formControlName="name" type="text" class="form-control" id="name" placeholder="Rule Name">
+    </div>
+  </div>
+    </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="sitename">Site</label>
+   <select formControlName="sitename" class="form-control">
+     <option *ngFor="let element of site"[value]="element.token">{{element.sitename}}</option>
+      </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="assetType">AssetModuleId</label>
+        <select formControlName="assetType" class="form-control" (change)="onChange($event)">
+      <option *ngFor="let moduleId of assetModuleId"[value]="moduleId.id">{{moduleId.id}}</option>
+   </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="assetID">Asset ID</label>
+        <select formControlName="assetID" class="form-control" >
+          <option [ngValue]="undefined" disabled  selected> Asset ID</option>
+      <option>LT_001</option>
+      <option>LT_002</option>
+   </select>
+      </div>
+    </div>
+  </div>
+<h5>Condition</h5>
+       <!--<div #parent></div>-->
+       <div formArrayName="conditions">
+      <div class="row" *ngFor="let condition of ruleForm.controls.conditions.controls; let i=index" [formGroupName]="i">
+         <!-- <div [formGroupName]="i">-->
+          <div class="col-sm-6">
+            <div class="form-group">
+              <select formControlName="parameter" class="form-control">
+                <option [ngValue]="undefined" disabled  selected> Please Choose</option>
+                <option *ngFor="let element of assetAttr"[value]="element.attr">{{element.attr}}</option>
+         </select>
+
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <!--<label for="inputEmail">Location</label>
+              <input type="email" class="form-control" id="inputEmail" placeholder="     > =   ">-->
+              <select formControlName="operation" class="form-control">
+                  <option><</option>
+                  <option>></option>
+                  <option>==</option>
+                  <option>!=</option>
+                  <option><=</option>
+                  <option>>=</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <!--<label for="inputEmail">Location</label>-->
+              <input formControlName="measure" type="text" class="form-control" id="text" placeholder="70">
+            </div>
+          </div>
+          <div class="col-md-2">
+          <button class="btn btn-danger btn-icon" type="button" (click)="removeAddress(i)"><i _ngcontent-c35="" class="ion-trash-a"></i></button>
+          </div>
+          <!--</div>-->
+        </div>
+      <a class="btn btn-primary" (click)="addAddress()"><i _ngcontent-c35="" class="ion-plus-round"></i>  Add Condition</a><br><br>
+    </div>
+    <h5>Fullfill when</h5>
+    <div class="row" >
+        <div class="col-md-3">
+            <label class="radio-inline custom-radio nowrap">
+              <input formControlName="fulfilment" id="inlineRadio1" name="fulfilment" type="radio" value="and" >
+              <span translate="">All Conditions Apply</span>
+            </label>
+          </div>
+        <div class="col-md-3">
+            <label class="radio-inline custom-radio nowrap">
+              <input formControlName="fulfilment" id="inlineRadio1" name="fulfilment" type="radio" value="or" >
+              <span translate="">Any Conditions Apply</span>
+            </label>
+          </div>
+     </div>  <br>
+    <h5>Generate Action</h5>
+    <div class="row" >
+    <div class="col-md-3">
+        <label class="radio-inline custom-radio nowrap">
+          <input formControlName="alertLevel" id="inlineRadio1" name="alertLevel" type="radio" value="Info" >
+          <span translate="">Info</span>
+        </label>
+      </div>
+    <div class="col-md-3">
+        <label class="radio-inline custom-radio nowrap">
+          <input formControlName="alertLevel" id="inlineRadio1" name="alertLevel" type="radio" value="Warning" >
+          <span translate="">Warning</span>
+        </label>
+      </div>
+      <div class="col-md-3">
+          <label class="radio-inline custom-radio nowrap">
+            <input formControlName="alertLevel" id="inlineRadio1" name="alertLevel" type="radio" value="Critical">
+            <span translate="">Critical</span>
+          </label>
+        </div>
+      <div class="col-md-3">
+          <label class="radio-inline custom-radio nowrap">
+            <input formControlName="alertLevel" id="inlineRadio1" name="alertLevel" type="radio" value="Command" >
+            <span translate="">Command</span>
+          </label>
+        </div>
+  </div><br>
+
+
+    <div class="row" >
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="alertType">Type</label>
+          <input formControlName="alertType" type="text" class="form-control" id="alertType" placeholder="GearboxVibration Alert" >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="message">Message</label>
+          <input formControlName="message" type="text" class="form-control" id="message" placeholder="message">
+        </div>
+      </div>
+    </div>
+
+<button type="submit"  class="btn btn-primary">Add</button>
+
+<button type="button" class="btn btn-success btn-icon"><a routerLink="/pages/rules/listRules">Back</a></button>
+ </form>

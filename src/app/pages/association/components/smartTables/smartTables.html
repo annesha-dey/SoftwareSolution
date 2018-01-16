@@ -1,0 +1,14 @@
+<div class="widgets">
+
+  <div class="row">
+      <div  [hidden]="isLoaded" class="form-group">
+          <input  #search type="text" class="form-control" id="input2"
+          placeholder="Search" (keyup)="onSearch(search.value)">
+       </div>
+    <img [hidden]="!isLoaded" class="img-progress"  src="../../../../../assets/images/images.gif" />
+    <ba-card [hidden]="isLoaded" baCardClass="with-scroll" class="smart-table-container">
+      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+    </ba-card>
+  </div>
+
+</div>

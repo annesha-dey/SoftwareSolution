@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class Globals {
-   
+
+  DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS+0530';
+
 
 }

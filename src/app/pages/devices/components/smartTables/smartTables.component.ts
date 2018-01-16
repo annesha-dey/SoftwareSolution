@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { SmartTablesService } from './smartTables.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource, ViewCell } from 'ng2-smart-table';
+import { RestServicesService } from '../../../../service/rest.service/rest-services.service';
+import { CustomViewComponent } from './customdeviceview.component';
 
 @Component({
   selector: 'smart-tables',
@@ -11,44 +12,46 @@ import { LocalDataSource } from 'ng2-smart-table';
 export class SmartTables {
 
   query: string = '';
-  image1: 'app/browsers/firefox.svg';
+  isLoaded = true;
   settings = {
+    pager: {
+      perPage: 5,
+    },
+
+    actions: { add: false,
+      position: 'right'},
+      hideSubHeader : true,
     columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      firstName: {
-        title: 'First Name',
+      siteName: {
+        title: 'Site Name',
         type: 'string',
       },
-      lastName: {
-        title: 'Last Name',
+      hardwareId: {
+        title: 'Hardware Id',
         type: 'string',
       },
-      username: {
-        title: 'Username',
+       assetName: {
+         title: 'Device Name',
+         type: 'string',
+         filter: false,
+       },
+      createdDate: {
+        title: 'Created Date',
         type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      age: {
-        title: 'Age',
-        type: 'number',
       },
       image: {
-        title: 'image',
+        title: 'Image',
         sort: false,
         filter: false,
         type: 'html',
-        valuePrepareFunction: (image) => { return '<img src="../../../../../assets/images/bucks1.gif" />' }
+        valuePrepareFunction: (image) => {
+    return ' <img  width="80" height="80" src="' + image + '" /> '
+        },
       },
     },
     add: null,
     defaultStyle: false,
-      edit: {
+    edit: {
       editButtonContent: '<i class="ion-edit"></i>',
       saveButtonContent: '<i class="ion-checkmark"></i>',
       cancelButtonContent: '<i class="ion-close"></i>',
@@ -58,12 +61,13 @@ export class SmartTables {
       confirmDelete: true,
     },
   };
-// valuePrepareFunction: (image) => { return '<img src="../../../../../assets/images/bucks.gif" />' }
-  source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected service: SmartTablesService) {
+  data = [];
+  source: LocalDataSource = new LocalDataSource();
+  constructor(protected service: SmartTablesService, public restService: RestServicesService) {
     this.service.getData().then((data) => {
       this.source.load(data);
+      this.isLoaded = false;
     });
   }
 
@@ -74,4 +78,34 @@ export class SmartTables {
       event.confirm.reject();
     }
   }
+
+  onSearch(query: string = '') {
+    this.source.setFilter([
+      {
+        field: 'hardwareId',
+        search: query,
+      },
+      {
+        field: 'assetId',
+        search: query,
+      },
+      {
+        field: 'assetName',
+        search: query,
+      },
+      {
+        field: 'siteToken',
+        search: query,
+      },
+      {
+        field: 'createdDate',
+        search: query,
+      },
+
+    ], false);
+    // second parameter specifying whether to perform 'AND' or 'OR' search
+    // (meaning all columns should contain search query or at least one)
+    // 'AND' by default, so changing to 'OR' by setting false here
+  }
+
 }

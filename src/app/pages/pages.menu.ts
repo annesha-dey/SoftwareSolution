@@ -10,9 +10,9 @@ export const PAGES_MENU = [
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
-            order: 0
-          }
-        }
+            order: 0,
+          },
+        },
       },
       {
         path: 'maps',
@@ -23,8 +23,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 100,
-          }
-        }
+          },
+        },
       },
       {
         path: 'charts',
@@ -35,8 +35,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 200,
-          }
-        }
+          },
+        },
       },
      {
         path: 'sites',
@@ -47,8 +47,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 250,
-          }
-        }
+          },
+        },
      },
      {
         path: 'devices',
@@ -59,8 +59,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 300,
-          }
-        }
+          },
+        },
      },
      {
         path: 'assets',
@@ -71,8 +71,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 400,
-          }
-        }
+          },
+        },
       },
       {
         path: 'association',
@@ -83,8 +83,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 500,
-          }
-        }
+          },
+        },
       },
       {
         path: 'rules',
@@ -95,8 +95,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 600,
-          }
-        }
+          },
+        },
       },
       {
         path: 'predictions',
@@ -107,8 +107,8 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 700,
-          }
-        }
+          },
+        },
       },
       {
         path: 'settings',
@@ -119,9 +119,9 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 800,
-          }
-        }
-      }
-    ]
-  }
+          },
+        },
+      },
+    ],
+  },
 ];

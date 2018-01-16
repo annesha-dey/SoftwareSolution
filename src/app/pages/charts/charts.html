@@ -1,0 +1,24 @@
+<chartist-js [token]=turbineID [turbineName]=turbineName></chartist-js>
+<div class="row">
+  <div class="col-md-12">
+    <ba-card cardTitle="Real Time Events" baCardClass="with-scroll">
+
+      <div class="container col-lg-12">
+        <tabset  class="tab-content">
+          <tab title="Measurements">
+            <responsive-table-chart [turbine_notifications]="turbine_notifications"></responsive-table-chart>
+          </tab>
+          <tab title="Locations" [disabled]="true">
+            Content of the Locations Tab
+          </tab>
+          <tab title="Alerts" [disabled]="true">
+            Content of the Alerts Tab
+          </tab>
+        </tabset>
+
+        <br/><br/>
+
+      </div>
+    </ba-card>
+  </div>
+</div>

@@ -1,86 +1,38 @@
+
 <section class="chartist">
-  <div class="row">
-    <div class="col-md-6 ">
-      <ba-card cardTitle="chart.lines" baCardClass="with-scroll">
-        <h5 translate>{{'chart.simple_line_chart'}}</h5>
-        <ba-chartist-chart baChartistChartClass="ct-chart"
-                           baChartistChartType="Line"
-                           [baChartistChartData]="data['simpleLineData']"
-                           [baChartistChartOptions]="data['simpleLineOptions']">
-        </ba-chartist-chart>
+  <div class="button-wrapper">
+      <button type="button" class="btn btn-info" (click)="getPreviousDateStats()">Prev</button> &nbsp; &nbsp; &nbsp;
+      <button type="button" class="btn btn-info">{{ selectedDate | date:'EE, MMM d, yyyy'}}</button> &nbsp; &nbsp; &nbsp;
+      <button [disabled]="isFutureDate" type="button" class="btn btn-info" (click)="getNextDateStats()"> Next</button>
 
-        <h5 translate>{{'chart.line_chart'}}</h5>
-        <ba-chartist-chart baChartistChartClass="ct-chart"
-                           baChartistChartType="Line"
-                           [baChartistChartData]="data['areaLineData']"
-                           [baChartistChartOptions]="data['areaLineOptions']">
-        </ba-chartist-chart>
-
-        <h5 translate>{{'chart.bi_polar_line_chart'}}</h5>
-        <ba-chartist-chart baChartistChartClass="ct-chart"
-                           baChartistChartType="Line"
-                           [baChartistChartData]="data['biLineData']"
-                           [baChartistChartOptions]="data['biLineOptions']">
-        </ba-chartist-chart>
-      </ba-card>
     </div>
-
-    <div class="col-md-6 ">
-      <ba-card cardTitle="chart.bars" baCardClass="with-scroll">
-        <h5 translate>{{'chart.simple_bar_chart'}}</h5>
-        <ba-chartist-chart baChartistChartClass="ct-chart"
-                           baChartistChartType="Bar"
-                           [baChartistChartData]="data['simpleBarData']"
-                           [baChartistChartOptions]="data['simpleBarOptions']">
-        </ba-chartist-chart>
-
-        <h5 translate>{{'chart.multi_line_labels_bar_chart'}}</h5>
-        <ba-chartist-chart baChartistChartClass="ct-chart"
-                           baChartistChartType="Bar"
-                           [baChartistChartData]="data['multiBarData']"
-                           [baChartistChartOptions]="data['multiBarOptions']"
-                           [baChartistChartResponsive]="data['multiBarResponsive']">
-        </ba-chartist-chart>
-
-        <h5 translate>{{'chart.stacked_bar_chart'}}</h5>
-        <ba-chartist-chart baChartistChartClass="ct-chart stacked-bar"
-                           baChartistChartType="Bar"
-                           [baChartistChartData]="data['stackedBarData']"
-                           [baChartistChartOptions]="data['stackedBarOptions']">
-        </ba-chartist-chart>
-      </ba-card>
-    </div>
-  </div>
-
+    <br>
   <div class="row">
-    <div class="col-md-12">
-      <ba-card cardTitle="chart.pies_and_donuts" baCardClass="with-scroll">
-        <div class="row">
-          <div class="col-md-12 col-lg-4"><h5 translate>{{'chart.simple_pie'}}</h5>
-            <ba-chartist-chart baChartistChartClass="ct-chart stacked-bar"
-                               baChartistChartType="Pie"
-                               [baChartistChartData]="data['simplePieData']"
-                               [baChartistChartOptions]="data['simplePieOptions']"
-                               [baChartistChartResponsive]="getResponsive(20, 80)">
-            </ba-chartist-chart>
-          </div>
-          <div class="col-md-12 col-lg-4"><h5 translate>{{'chart.pie_with_labels'}}</h5>
-            <ba-chartist-chart baChartistChartClass="ct-chart stacked-bar"
-                               baChartistChartType="Pie"
-                               [baChartistChartData]="data['labelsPieData']"
-                               [baChartistChartOptions]="data['labelsPieOptions']">
-            </ba-chartist-chart>
-          </div>
-          <div class="col-md-12 col-lg-4"><h5 translate>{{'chart.donut'}}</h5>
-            <ba-chartist-chart baChartistChartClass="ct-chart stacked-bar"
-                               baChartistChartType="Pie"
-                               [baChartistChartData]="data['simpleDonutData']"
-                               [baChartistChartOptions]="data['simpleDonutOptions']"
-                               [baChartistChartResponsive]="getResponsive(5, 40)">
-            </ba-chartist-chart>
-          </div>
+    <div class="col-md-2 ">
+      <ba-card cardTitle="Turbine Info" baCardClass="with-scroll">
+        <h5 translate>{{turbineName}}</h5>
+        <div class="imageTu">
+      <img class="img-turbine" ng-src="assets/img/app/asset_image.gif" src="assets/img/app/asset_image.gif"><br><br>
+         <span class="logo-text">Power Generated&nbsp;&nbsp;{{powerGenerated}}</span><br>
+          <span class="logo-text">Capacity Factor&nbsp;&nbsp;{{capacityFactor}}</span><br>
+          <span class="logo-text">Total warnings&nbsp;&nbsp;{{noOfWarnings}}</span><br>
+          <span class="logo-text">Total critical events &nbsp;&nbsp;{{noOfCriticalEvents}}</span>
         </div>
       </ba-card>
     </div>
+    <div  #chartParentDiv class="col-md-5" (window:resize)="onResize($event)">
+      <ba-card cardTitle="Vibration Analysis" baCardClass="with-scroll">
+            <chart [options]="vibrationOptions" (load)="saveVibrationChart($event.context)" class="chart-container">
+            </chart>
+      </ba-card>
+    </div>
+
+    <div  class="col-md-5" (window:resize)="onResize($event)">
+      <ba-card cardTitle="Power Analysis" baCardClass="with-scroll">
+          <chart [options]="powerOptions" (load)="savePowerChart($event.context)" class="chart-container">
+          </chart>
+      </ba-card>
+    </div>
   </div>
+
 </section>

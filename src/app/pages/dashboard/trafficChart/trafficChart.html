@@ -5,7 +5,7 @@
     <div class="canvas-holder">
       <canvas class="chart-area" width="300px" height="300px"></canvas>
       <div class="traffic-text">
-        1,900,128
+        {{totalPower}}
         <span translate>{{'dashboard.traffic_chart.energy_generated'}}</span>
       </div>
     </div>
@@ -14,15 +14,21 @@
 
   <div class="channels-info">
     <div>
-      <div class="channels-info-item" *ngFor="let item of doughnutData">
-        <div class="legend-color" [ngStyle]="{'background-color': item.color }"></div>
-        <p>{{ item.label }}<span class="channel-number">+{{ item.percentage }}%</span></p>
-        <div class="progress progress-sm channel-progress">
-          <div class="progress-bar" role="progressbar"
-               [attr.aria-valuenow]="item.percentage" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: item.percentage + '%' }">
-          </div>
-        </div>
-      </div>
+      <ul class="form-list" >
+        <li  *ngFor="let item of doughnutData"  (click)="select(item)" [ngClass]="{active: isActive(item)}">
+            <div class="channels-info-item"   >
+                <div class="legend-color"  [ngStyle]="{'background-color': item.color }">
+
+                </div>
+                <p>{{ item.label }}<span class="channel-number">{{ item.percentage }}%</span></p>
+                <div class="progress progress-sm channel-progress">
+                  <div class="progress-bar"  role="progressbar" [attr.aria-valuenow]="item.percentage"
+                  aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: item.percentage + '%' }" >
+                  </div>
+                </div>
+              </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

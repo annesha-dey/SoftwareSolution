@@ -31,6 +31,7 @@ export class SmartTables {
       id: {
         title: 'ID',
         type: 'number'
+
       },
       firstName: {
         title: 'First Name',

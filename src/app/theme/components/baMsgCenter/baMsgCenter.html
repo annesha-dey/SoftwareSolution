@@ -10,21 +10,22 @@
       <i class="dropdown-arr"></i>
 
       <div class="header clearfix">
-        <strong>Notifications</strong>
+        <strong>Alerts</strong>
         <a href>Mark All as Read</a>
         <a href>Settings</a>
       </div>
       <div class="msg-list">
         <a *ngFor="let msg of notifications" href class="clearfix">
           <div class="img-area"><img [ngClass]="{'photo-msg-item': !msg.image}"
-                                     src="{{ ( msg.image ||  (msg.name | baProfilePicture)) }}"></div>
+                                     src="assets\img\theme\vendor\leaflet\ind5.png"></div>
           <div class="msg-area">
-            <div>{{ msg.text }}</div>
-            <span>{{ msg.time }}</span>
+            <div>{{ msg.message }}</div>
+            <span>{{ msg.assetId }}</span>
+			      <span>{{ msg.eventDate }}</span>
           </div>
         </a>
       </div>
-      <a href>See all notifications</a>
+      <a href>See all alerts</a>
     </div>
   </li>
   <li class="dropdown">
@@ -42,10 +43,12 @@
       <div class="msg-list">
         <a *ngFor="let msg of messages" href class="clearfix">
           <div class="img-area"><img [ngClass]="{'photo-msg-item': !msg.image}"
-                                     src="{{ ( msg.image ||  (msg.name | baProfilePicture)) }}"></div>
+                                     src="assets\img\theme\vendor\leaflet\wind1.png"></div>
           <div class="msg-area">
-            <div>{{ msg.text }}</div>
-            <span>{{ msg.time }}</span>
+            <!-- <div>{{ msg.text }}</div>
+            <span>{{ msg.time }}</span> -->
+            <div>Krishna</div>
+            <span>Aricent</span>
           </div>
         </a>
       </div>

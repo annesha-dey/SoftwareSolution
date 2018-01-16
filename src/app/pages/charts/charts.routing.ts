@@ -7,7 +7,7 @@ import { ChartistJs } from './components/chartistJs/chartistJs.component';
 const routes: Routes = [
   {
     path: '',
-    component: ChartistJs,
+    component: Charts,
     children: [
       { path: 'chartist-js', component: ChartistJs }
     ]

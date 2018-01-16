@@ -5,6 +5,8 @@ import { GlobalState } from './global.state';
 import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/services';
 import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
+import { MqttService } from './service/mqtt.service/mqtt.service';
+import { AppState } from './app.service';
 
 /*
  * App Component
@@ -28,7 +30,18 @@ export class App {
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private themeConfig: BaThemeConfig) {
+              private themeConfig: BaThemeConfig,
+			  private mqtt: MqttService,
+              private appState: AppState) {
+      
+      
+    
+      
+    this.appState.getSiteData().then((data) => {
+        if(data.length > 0){
+            sessionStorage.setItem('Sites', JSON.stringify(data));
+        }
+    });
 
     themeConfig.config();
 
@@ -37,6 +50,10 @@ export class App {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+	
+	console.log('Connecting to MQTT broker');	  
+	this.mqtt.setupConnection();		
+      
   }
 
   public ngAfterViewInit(): void {

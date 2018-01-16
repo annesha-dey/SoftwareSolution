@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component,Input} from '@angular/core';
 
 import {PieChartService} from './pieChart.service';
 
@@ -13,10 +13,11 @@ import 'easy-pie-chart/dist/jquery.easypiechart.js';
 export class PieChart {
 
   public charts: Array<Object>;
+  @Input() piecht : Array<Object>;
   private _init = false;
 
   constructor(private _pieChartService: PieChartService) {
-    this.charts = this._pieChartService.getData();
+   
   }
 
   ngAfterViewInit() {

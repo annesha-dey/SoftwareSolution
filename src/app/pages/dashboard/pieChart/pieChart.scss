@@ -8,6 +8,7 @@
     padding: 0 15px;
     float: left;
     box-sizing: border-box;
+    // background-color: peru !important;
 
     .card {
       height: 114px;
@@ -16,8 +17,8 @@
 
   @media screen and (min-width: 1325px) {
     .pie-chart-item-container {
-      max-width: 25%;
-      flex: 0 0 25%
+      max-width: 20%;
+      flex: 0 0 20%
     }
   }
   @media screen and (min-width: 700px) and (max-width: 1325px)  {
@@ -35,19 +36,15 @@
 
   .pie-chart-item {
     position: relative;
-    .chart-icon {
-      position: absolute;
-      right: 0;
-      top: 3px;
-    }
+    // left: -10px !important;
   }
   @media screen and
   (min-width: 1325px) and (max-width: 1650px),
   (min-width: 700px) and (max-width: 830px),
   (max-width: 400px) {
-    .chart-icon {
-      display: none;
-    }
+    // .chart-icon {
+    //   display: none;
+    // }
   }
 
   .chart {
@@ -76,12 +73,13 @@
   }
   .description {
     display: inline-block;
-    padding: 20px 0 0 20px;
+    padding: 20px 0 0 10px;
     font-size: 18px;
     opacity: 0.9;
+
     .description-stats {
-      padding-top: 8px;
-      font-size: 24px;
+      padding-top: 10px;
+      font-size: 30px !important;
     }
   }
   .angular {

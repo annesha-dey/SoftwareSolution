@@ -200,3 +200,52 @@
     }
   }
 }
+
+div.highlight {
+  background-color: red;
+}
+
+.form-list{
+  list-style: none;
+}
+
+
+.paginationclass div{
+  cursor:pointer;
+}
+// .active{
+
+//   background-color: red;
+// }
+
+// .inactive{
+//  background-color:  transparent;
+// }
+.list-group-item {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 50px;
+  margin-bottom: 0px;
+  padding: 0;
+  line-height: 50px;
+  cursor: pointer;
+  text-align: center;
+  color: black;
+}
+.list-group-item:hover .tag-div {
+  background-color: transparent;
+}
+
+.tag-div {
+  width: 10px;
+  height: 100%;
+  float: left;
+}
+
+.tag-div-selected {
+  background-color: blue;
+}
+
+.tag-div-not-selected {
+  background-color: transparent;
+}
+.active p{color:red;}

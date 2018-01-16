@@ -1,0 +1,35 @@
+<div>
+  <table class="table event-table">
+    <tr>
+      <th class="measurement-th">Measurements</th>
+      <!-- <th>Power</th>
+      <th>Temp</th>
+      <th>Vbr_Gearbox</th>
+      <th>Vbr_Generator</th>
+      <th>Vbr_MainBearing</th>
+      <th>Vbr_Nachelle</th>
+      <th>Optical Stream</th>
+      <th>OilTemp</th>
+      <th>OilMoisture</th> -->
+      <th class="measurement-date">Event Date</th>
+      <th class="measurement-date">Received Date</th>
+    </tr>
+
+    <tr *ngFor="let data of turbine_notifications">
+      <td class="measurement-td"> <span> {{ data.measurements }}</span></td>
+	     <!-- <td> {{ data.measurements.generatedPower}}</td>
+       <td>{{ (data.measurements.lubeoil_gearbox_temperature).toFixed(2)}}</td>
+       <td>{{ (data.measurements.vibration_gearbox).toFixed(2)}}</td>
+       <td>{{ (data.measurements.vibration_generator).toFixed(2)}}</td>
+       <td>{{ (data.measurements.vibration_bearing).toFixed(2)}}</td>
+       <td>{{ (data.measurements.vibration_nachelle).toFixed(2)}}</td>
+
+       <td>{{ (data.measurements.opticalStrain_blade1).toFixed(2)}}</td>
+       <td>{{ (data.measurements.lubeoil_gearbox_temperature).toFixed(2)}}</td>
+       <td>{{ (data.measurements.lubeoil_gearbox_moisture).toFixed(2)}}</td> -->
+       <td>{{ data.eventDate}}</td>
+       <td>{{ data.receivedDate}}</td>
+
+    </tr>
+  </table>
+</div>

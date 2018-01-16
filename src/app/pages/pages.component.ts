@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { BaMenuService } from '../theme';
 import { PAGES_MENU } from './pages.menu';
 
+
 @Component({
   selector: 'pages',
   template: `
@@ -17,7 +18,7 @@ import { PAGES_MENU } from './pages.menu';
     </div>
     <footer class="al-footer clearfix">
       <div class="al-footer-main clearfix">
-        <div class="al-copy">&copy; <a href="http://www.aricent.com" translate>{{'general.aricent'}}</a> 2017</div>
+        <div class="al-copy">&copy; <a href="http://www.aricent.com" translate>{{'general.aricent'}}</a> 2018</div>
         <ul class="al-share clearfix">
           <li><i class="socicon socicon-facebook"></i></li>
           <li><i class="socicon socicon-twitter"></i></li>
@@ -31,6 +32,7 @@ import { PAGES_MENU } from './pages.menu';
 export class Pages implements OnInit {
 
   constructor(private _menuService: BaMenuService) {
+
   }
 
   ngOnInit() {
